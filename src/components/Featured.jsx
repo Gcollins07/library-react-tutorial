@@ -5,7 +5,7 @@ import { books } from "../data";
 export const Featured = () => {
   console.log(books);
   return (
-    <section id="featured">
+    <section id="features">
       <div className="container">
         <div className="row">
           <h2 className="section__title">
@@ -19,10 +19,6 @@ export const Featured = () => {
                 <Book book={book} key={book.id} />
             ))
             }
-            <Book />
-            <Book />
-            <Book />
-            <Book />
           </div>
         </div>
       </div>

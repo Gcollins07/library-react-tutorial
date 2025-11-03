@@ -1,47 +1,64 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LibraryLogo from "../assets/Library.svg"
+import LibraryLogo from "../assets/Library.svg";
+import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ numberOfItems }) => {
+
+  function openMenu() {
+    document.body.classList += " menu--open";
+  }
+  function closeMenu() {
+    document.body.classList.remove("menu--open");
+  }
   return (
     <nav>
       <div className="nav__container">
-        <a href="/" className="nav__logo">
+        <Link to="/" className="logo">
           <img src={LibraryLogo} alt="Library Logo" />
-        </a>
+        </Link>
         <ul className="nav__links">
           <li className="nav__list">
-            <a href="/" className="nav__link">
+            <Link to="/" className="nav__link">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav__list">
-            <a href="/" className="nav__link">
+            <Link to="/books" className="nav__link">
               Books
-            </a>
+            </Link>
           </li>
-          <button className="button__menu">
+          <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="bars" />
           </button>
           <li className="nav__icon">
-            <a href="/cart" className="nav__link">
+            <Link to="/cart" className="nav__link">
               <FontAwesomeIcon icon="shopping-cart" />
-            </a>
-            <span className="cart__length">1</span>
+            </Link>
+            {numberOfItems > 0 && <span className="cart__length">{numberOfItems}</span>}
           </li>
         </ul>
         <div className="menu__backdrop">
-            <button className="menu__close">
-              <FontAwesomeIcon icon="times" />
-            </button>
-            <ul className="menu__links">
-                <li className="menu__list">
-                    <a href="/">Home</a>
-                    <a href="/books">Books</a>
-                    <a href="/cart">Cart</a>
-                </li>
-                
-            </ul>
+          <button className="btn__menu btn__menu--close" onClick={closeMenu}>
+            <FontAwesomeIcon icon="times" />
+          </button>
+          <ul className="menu__links">
+            <li className="menu__list">
+              <Link to="/" className="menu__link">
+                Home
+              </Link>
+            </li>
+            <li className="menu__list">
+              <Link to="/books" className="menu__link">
+                Books
+              </Link>
+            </li>
+            <li className="menu__list">
+              <Link to="/cart" className="menu__link">
+                Cart
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
